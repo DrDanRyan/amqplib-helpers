@@ -19,7 +19,7 @@ export abstract class RequestClient {
     });
   }
 
-  protected request(resource: string, action: string, body: any, cb: ResultCb) {
+  protected request(resource: string, action: string, body: any, cb: (err: Error, res?: any) => void) {
     const content = new Buffer(JSON.stringify({resource, action, body}));
     const correlationId = id();
     this.channel.publish('request', this.routingKey, content, {
@@ -35,12 +35,8 @@ export abstract class RequestClient {
   }
 }
 
-interface RequestIndex {
-  [correlationId: string]: {cb: ResultCb, timeout: NodeJS.Timer};
-}
-
-interface ResultCb {
-  (err: Error, result?: any): void;
+export interface RequestIndex {
+  [correlationId: string]: {cb: (err: Error, res?: any) => void, timeout: NodeJS.Timer};
 }
 
 interface ResponseContent {
