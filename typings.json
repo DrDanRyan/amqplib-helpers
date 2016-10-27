@@ -1,6 +1,10 @@
 {
   "name": "amqplib-helpers",
   "dependencies": {
-    "amqplib": "registry:npm/amqplib#0.4.1+20160726143451"
+    "amqplib": "registry:npm/amqplib#0.4.1+20160726143451",
+    "meteor-random": "registry:npm/meteor-random#0.0.3+20160610170438"
+  },
+  "globalDependencies": {
+    "node-4": "registry:dt/node-4#4.0.0+20161019125345"
   }
 }

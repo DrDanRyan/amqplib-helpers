@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Some helper classes for rpc requests with amqplib",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +21,8 @@
   },
   "homepage": "https://github.com/DrDanRyan/amqplib-helpers#readme",
   "dependencies": {
-    "amqplib": "^0.4.2"
+    "amqplib": "^0.4.2",
+    "meteor-random": "0.0.3",
+    "serializerr": "^1.0.3"
   }
 }
