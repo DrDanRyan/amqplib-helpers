@@ -5,9 +5,10 @@ export abstract class TaskHandler {
     channel.consume(queue, msg => {
       const routingKey: string = msg.fields.routingKey;
       const content: any = JSON.parse(msg.content.toString());
-      this.process(routingKey, content, () => { channel.ack(msg); });
+      const correlationId: string = msg.properties.correlationId;
+      this.process(routingKey, content, correlationId, () => { channel.ack(msg); });
     });
   }
 
-  protected abstract process(routingKey: string, content: any, cb: () => void): void;
+  protected abstract process(routingKey: string, content: any, correlationId: string, cb: () => void): void;
 }

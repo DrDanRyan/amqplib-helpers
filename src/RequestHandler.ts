@@ -8,7 +8,7 @@ export abstract class RequestHandler {
       const replyTo: string = msg.properties.replyTo;
       const correlationId: string = msg.properties.correlationId;
 
-      this.process(content, (err, result) => {
+      this.process(content, correlationId, (err, result) => {
         if (err) err = serializerr(err);
         const reply = new Buffer(JSON.stringify({err, result}));
         channel.sendToQueue(replyTo, reply, { correlationId, contentType: 'application/json' });
@@ -17,5 +17,5 @@ export abstract class RequestHandler {
     });
   }
 
-  protected abstract process(content: any, cb: (err: Error, res?: any) => void): void;
+  protected abstract process(content: any, correlationId: string, cb: (err: Error, res?: any) => void): void;
 }
