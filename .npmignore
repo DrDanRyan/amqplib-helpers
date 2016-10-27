@@ -1,0 +1,5 @@
+*-spec.*
+tslint.json
+tsconfig.json
+src/
+typings/

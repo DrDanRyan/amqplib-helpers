@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "noImplicitAny": true
+    },
+    "filesGlob": [
+        "./src/**/*.ts",
+        "./typings/index.d.ts"
+    ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "amqplib-helpers",
+  "dependencies": {
+    "amqplib": "registry:npm/amqplib#0.4.1+20160726143451"
+  }
+}

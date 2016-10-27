@@ -1,0 +1,25 @@
+{
+  "name": "amqplib-helpers",
+  "version": "1.0.0",
+  "description": "Some helper classes for rpc requests with amqplib",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrDanRyan/amqplib-helpers.git"
+  },
+  "keywords": [
+    "amqplib"
+  ],
+  "author": "Dan Ryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrDanRyan/amqplib-helpers/issues"
+  },
+  "homepage": "https://github.com/DrDanRyan/amqplib-helpers#readme",
+  "dependencies": {
+    "amqplib": "^0.4.2"
+  }
+}
