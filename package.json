@@ -1,7 +1,7 @@
 {
   "name": "amqplib-helpers",
   "version": "1.0.0",
-  "description": "Some helper classes for rpc requests with amqplib",
+  "description": "Some Typescript base classes for setting up interprocess communication via amqplib",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
@@ -12,7 +12,8 @@
     "url": "git+https://github.com/DrDanRyan/amqplib-helpers.git"
   },
   "keywords": [
-    "amqplib"
+    "amqplib",
+    "typescript"
   ],
   "author": "Dan Ryan",
   "license": "ISC",
