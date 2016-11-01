@@ -4,18 +4,19 @@ const serializerr = require('serializerr');
 export abstract class RequestHandler {
   constructor(protected channel: Channel, protected queue: string) {
     channel.consume(queue, msg => {
+      const routingKey: string = msg.fields.routingKey;
       const content: any = JSON.parse(msg.content.toString());
       const replyTo: string = msg.properties.replyTo;
       const correlationId: string = msg.properties.correlationId;
 
-      this.process(content, correlationId, (err, result) => {
+      this.process(routingKey, content, correlationId, (err, result) => {
         if (err) err = serializerr(err);
-        const reply = new Buffer(JSON.stringify({err, result}));
+        const reply = new Buffer(JSON.stringify({ err, result }));
         channel.sendToQueue(replyTo, reply, { correlationId, contentType: 'application/json' });
         channel.ack(msg);
       });
     });
   }
 
-  protected abstract process(content: any, correlationId: string, cb: (err: Error, res?: any) => void): void;
+  protected abstract process(routingKey: string, content: any, correlationId: string, cb: (err: Error, res?: any) => void): void;
 }

@@ -5,8 +5,8 @@ export abstract class RequestClient {
   protected pending: RequestIndex;
   protected replyTo: string;
 
-  constructor(protected channel: Channel, protected routingKey: string, protected timeoutDelay = 3000) {
-    channel.assertQueue('', {exclusive: true}, (queueErr, ok) => {
+  constructor(protected channel: Channel, protected timeoutDelay = 3000) {
+    channel.assertQueue('', { exclusive: true }, (queueErr, ok) => {
       if (queueErr) throw queueErr;
       this.replyTo = ok.queue;
       channel.consume(ok.queue, msg => {
@@ -15,14 +15,14 @@ export abstract class RequestClient {
         clearTimeout(timeout);
         const {err, result} = JSON.parse(msg.content.toString()) as ResponseContent;
         cb(err, result);
-      }, {noAck: true});
+      }, { noAck: true });
     });
   }
 
-  protected request(resource: string, action: string, body: any, cb: (err: Error, res?: any) => void) {
-    const content = new Buffer(JSON.stringify({resource, action, body}));
+  protected request(routingKey: string, content: any, cb: (err: Error, res?: any) => void) {
+    const contentBuffer = new Buffer(JSON.stringify(content));
     const correlationId = id();
-    this.channel.publish('request', this.routingKey, content, {
+    this.channel.publish('request', routingKey, contentBuffer, {
       contentType: 'application/json',
       replyTo: this.replyTo,
       correlationId
@@ -31,12 +31,12 @@ export abstract class RequestClient {
       cb(new Error('Timeout Limit Exceeded.'));
       delete this.pending[correlationId];
     }, this.timeoutDelay);
-    this.pending[correlationId] = {cb, timeout};
+    this.pending[correlationId] = { cb, timeout };
   }
 }
 
 export interface RequestIndex {
-  [correlationId: string]: {cb: (err: Error, res?: any) => void, timeout: NodeJS.Timer};
+  [correlationId: string]: { cb: (err: Error, res?: any) => void, timeout: NodeJS.Timer };
 }
 
 interface ResponseContent {

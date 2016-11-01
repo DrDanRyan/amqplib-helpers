@@ -1,6 +1,6 @@
 import { Channel } from 'amqplib/callback_api';
 
-export abstract class TaskHandler {
+export abstract class NotificationHandler {
   constructor(protected channel: Channel, protected queue: string) {
     channel.consume(queue, msg => {
       const routingKey: string = msg.fields.routingKey;
@@ -10,5 +10,5 @@ export abstract class TaskHandler {
     });
   }
 
-  protected abstract process(routingKey: string, content: any, correlationId: string, cb: () => void): void;
+  protected abstract process(routingKey: string, content: any, correlationId: string, done: () => void): void;
 }
