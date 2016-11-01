@@ -9,9 +9,9 @@ export abstract class RequestHandler {
       const replyTo: string = msg.properties.replyTo;
       const correlationId: string = msg.properties.correlationId;
 
-      this.process(routingKey, content, correlationId, (err, result) => {
+      this.process(routingKey, content, correlationId, (err, res) => {
         if (err) err = serializerr(err);
-        const reply = new Buffer(JSON.stringify({ err, result }));
+        const reply = new Buffer(JSON.stringify({ err, res }));
         channel.sendToQueue(replyTo, reply, { correlationId, contentType: 'application/json' });
         channel.ack(msg);
       });
