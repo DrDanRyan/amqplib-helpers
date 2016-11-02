@@ -22,16 +22,16 @@ export abstract class RequestClient {
   protected request(routingKey: string, content: any, cb: (err: Error, res?: any) => void) {
     const contentBuffer = new Buffer(JSON.stringify(content));
     const correlationId = id();
-    this.channel.publish('request', routingKey, contentBuffer, {
-      contentType: 'application/json',
-      replyTo: this.replyTo,
-      correlationId
-    });
     const timeout = setTimeout(() => {
       cb(new Error('Timeout Limit Exceeded.'));
       delete this.pending[correlationId];
     }, this.timeoutDelay);
     this.pending[correlationId] = { cb, timeout };
+    this.channel.publish('request', routingKey, contentBuffer, {
+      contentType: 'application/json',
+      replyTo: this.replyTo,
+      correlationId
+    });
   }
 }
 
