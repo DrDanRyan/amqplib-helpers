@@ -2,7 +2,7 @@ import { Channel } from 'amqplib/callback_api';
 import { id } from 'meteor-random';
 
 export abstract class RequestClient {
-  protected pending: RequestIndex;
+  protected pending: RequestIndex = {};
   protected replyTo: string;
 
   constructor(protected channel: Channel, protected timeoutDelay = 3000) {
