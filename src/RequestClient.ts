@@ -10,6 +10,7 @@ export abstract class RequestClient {
       if (queueErr) throw queueErr;
       this.replyTo = ok.queue;
       channel.consume(ok.queue, msg => {
+        console.log('msg received:', msg);
         if (!this.pending[msg.properties.correlationId]) return;
         const {cb, timeout} = this.pending[msg.properties.correlationId];
         clearTimeout(timeout);
