@@ -1,5 +1,5 @@
 import { Channel } from 'amqplib/callback_api';
-import { id } from 'meteor-random';
+const { id } = require('meteor-random');
 
 export abstract class RequestClient {
   protected pending: RequestIndex = {};
