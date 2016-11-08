@@ -1,5 +1,5 @@
 import { Channel } from 'amqplib/callback_api';
-const { id } = require('meteor-random');
+const Random = require('meteor-random');
 
 export abstract class RequestClient {
   protected pending: RequestIndex = {};
@@ -16,7 +16,7 @@ export abstract class RequestClient {
 
   protected request(routingKey: string, content: any, cb: (err: Error, res?: any) => void) {
     const contentBuffer = new Buffer(JSON.stringify(content));
-    const correlationId = id();
+    const correlationId = Random.id();
 
     // publish request
     this.channel.publish('request', routingKey, contentBuffer, {
