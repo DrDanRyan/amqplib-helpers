@@ -1,6 +1,6 @@
-export * from './openChannel';
+export * from './connect';
 export * from './RequestClient';
 export * from './RequestHandler';
 export * from './NotificationHandler';
 export * from './NotificationDispatcher';
-export { Channel } from 'amqplib/callback_api';
+export { Channel, Connection } from 'amqplib/callback_api';
