@@ -1,5 +1,4 @@
 import { Channel } from 'amqplib/callback_api';
-import { ResponseContent } from './RequestClient';
 const serializerr = require('serializerr');
 
 export abstract class RequestHandler {
@@ -12,7 +11,7 @@ export abstract class RequestHandler {
 
       this.process(routingKey, content, correlationId, (err, res) => {
         if (err) err = serializerr(err);
-        const responseContent: ResponseContent = { err, res };
+        const responseContent = { err, res };
         const responseBuffer = new Buffer(JSON.stringify(responseContent));
         channel.sendToQueue(replyTo, responseBuffer, { correlationId, contentType: 'application/json' });
         channel.ack(msg);

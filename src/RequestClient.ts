@@ -2,17 +2,21 @@ import { Channel } from 'amqplib/callback_api';
 import { NotificationDispatcher } from './NotificationDispatcher';
 const Random = require('meteor-random');
 
+export interface RequestIndex {
+  [correlationId: string]: { cb: (err: Error, res?: any) => void, timeout: NodeJS.Timer };
+}
+
 export abstract class RequestClient {
   protected pending: RequestIndex = {};
   protected dispatcher: NotificationDispatcher;
 
-  constructor(protected channel: Channel, protected replyTo: string, protected serviceName: ConstrainDOMString, protected timeoutDelay = 3000) {
+  constructor(protected channel: Channel, protected replyTo: string, protected serviceName: string, protected timeoutDelay = 3000) {
     this.dispatcher = new NotificationDispatcher(channel);
     channel.consume(replyTo, msg => {
       if (!this.pending[msg.properties.correlationId]) return;
       const {cb, timeout} = this.pending[msg.properties.correlationId];
       clearTimeout(timeout);
-      const {err, res} = JSON.parse(msg.content.toString()) as ResponseContent;
+      const {err, res} = JSON.parse(msg.content.toString()) as {err: Error, res: any};
       cb(err, res);
     }, { noAck: true });
   }
@@ -45,13 +49,4 @@ export abstract class RequestClient {
     }, this.timeoutDelay);
     this.pending[correlationId] = { cb: loggingCb, timeout };
   }
-}
-
-export interface RequestIndex {
-  [correlationId: string]: { cb: (err: Error, res?: any) => void, timeout: NodeJS.Timer };
-}
-
-export interface ResponseContent {
-  err: Error;
-  res?: any;
 }
