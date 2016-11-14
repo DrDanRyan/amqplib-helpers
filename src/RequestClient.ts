@@ -39,8 +39,8 @@ export abstract class RequestClient {
         role: 'client',
         routingKey,
         content,
-        error: err,
-      }, correlationId);
+        err,
+      } as ErrorContent, correlationId);
       cb(err, res);
     };
     const timeout = setTimeout(() => {
@@ -49,4 +49,12 @@ export abstract class RequestClient {
     }, this.timeoutDelay);
     this.pending[correlationId] = { cb: loggingCb, timeout };
   }
+}
+
+export interface ErrorContent {
+  service: string;
+  role: 'client' | 'server';
+  routingKey: string;
+  content: any;
+  err: Error;
 }
