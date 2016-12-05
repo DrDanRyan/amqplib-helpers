@@ -26,9 +26,5 @@
     "amqplib": "^0.5.0",
     "meteor-random": "0.0.3",
     "serializerr": "^1.0.3"
-  },
-  "devDependencies": {
-    "tslint": "^4.0.2",
-    "typescript": "^2.0.10"
   }
 }
