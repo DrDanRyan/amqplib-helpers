@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/DrDanRyan/amqplib-helpers#readme",
   "dependencies": {
-    "@types/amqplib": "^0.5.0",
-    "amqplib": "^0.5.0",
-    "meteor-random": "0.0.3",
+    "@types/amqplib": "*",
+    "amqplib": "*",
+    "meteor-random": "*",
     "serializerr": "^1.0.3"
   }
 }
