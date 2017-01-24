@@ -2,11 +2,11 @@ import { Channel, Connection, connect as openConnection } from 'amqplib/callback
 
 export function connect(cb: (err: Error, result?: {channel: Channel, connection: Connection}) => void) {
   openConnection(process.env.RABBITMQ_URL, (connectErr, connection) => {
-    if (connectErr) return cb(connectErr);
+    if (connectErr) return cb(connectErr, null);
     connection.createChannel((channelErr, channel) => {
       if (channelErr) {
         connection.close();
-        return cb(channelErr);
+        return cb(channelErr, null);
       }
       cb(null, {channel, connection});
     });
