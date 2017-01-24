@@ -14,8 +14,8 @@
   resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.0.37.tgz#2e76b394aa9bea40d04241a31c0887a260283388"
 
 "@types/node@*":
-  version "7.0.2"
-  resolved "https://registry.npmjs.org/@types/node/-/node-7.0.2.tgz#f318fcda63543ac076316cb91653d8e89aa7bfce"
+  version "7.0.3"
+  resolved "https://registry.npmjs.org/@types/node/-/node-7.0.3.tgz#6bc1d23929bd426eabd409b5898537076bbbdeff"
 
 amqplib@*:
   version "0.5.1"
