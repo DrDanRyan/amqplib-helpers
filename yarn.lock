@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@types/amqplib@*":
+"@types/amqplib@^0.5.1":
   version "0.5.1"
   resolved "https://registry.npmjs.org/@types/amqplib/-/amqplib-0.5.1.tgz#d6f8b5838f7820f9424fafb841e44b89aadde0cc"
   dependencies:
@@ -10,12 +10,12 @@
     "@types/node" "*"
 
 "@types/bluebird@*":
-  version "3.0.37"
-  resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.0.37.tgz#2e76b394aa9bea40d04241a31c0887a260283388"
+  version "3.5.4"
+  resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.5.4.tgz#f120162b04fd6d55e10346d7e2e96eed462b02cf"
 
 "@types/node@*":
-  version "7.0.5"
-  resolved "https://registry.npmjs.org/@types/node/-/node-7.0.5.tgz#96a0f0a618b7b606f1ec547403c00650210bfbb7"
+  version "7.0.18"
+  resolved "https://registry.npmjs.org/@types/node/-/node-7.0.18.tgz#cd67f27d3dc0cfb746f0bdd5e086c4c5d55be173"
 
 amqplib@*:
   version "0.5.1"
@@ -33,8 +33,8 @@ bitsyntax@~0.0.4:
     buffer-more-ints "0.0.2"
 
 bluebird@^3.4.6:
-  version "3.4.7"
-  resolved "https://registry.npmjs.org/bluebird/-/bluebird-3.4.7.tgz#f72d760be09b7f76d08ed8fae98b289a8d05fab3"
+  version "3.5.0"
+  resolved "https://registry.npmjs.org/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
 
 buffer-more-ints@0.0.2:
   version "0.0.2"
