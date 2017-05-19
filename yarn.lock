@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@types/amqplib@^0.5.1":
+"@types/amqplib@*":
   version "0.5.1"
   resolved "https://registry.npmjs.org/@types/amqplib/-/amqplib-0.5.1.tgz#d6f8b5838f7820f9424fafb841e44b89aadde0cc"
   dependencies:
